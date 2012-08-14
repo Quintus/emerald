@@ -85,6 +85,20 @@ span.classmod-leader {
     color: gray;
 }
 
+table.constants {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+table.constants td, table.constants th {
+    border: 1px solid gray;
+}
+
+table.constants th {
+    background-color: #EEEEEE;
+}
+
 /****************************************
  * Unique elements
  ****************************************/
