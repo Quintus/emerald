@@ -66,6 +66,25 @@ p.toplevel-name {
     color: gray;
 }
 
+h1.class {
+    border: none;
+    margin-bottom: 0px;
+}
+
+p.superclass {
+    margin-top: 0px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 4px;
+    font-size: small;
+    color: gray;
+}
+
+span.classmod-leader {
+    font-size: 80%;
+    font-variant: small-caps;
+    color: gray;
+}
+
 /****************************************
  * Unique elements
  ****************************************/

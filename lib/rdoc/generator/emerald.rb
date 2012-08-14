@@ -14,6 +14,10 @@ class RDoc::Generator::Emerald
   class EmeraldError < StandardError
   end
 
+  # Test stuff.
+  class MyAwesomeError < EmeraldError
+  end
+
   # Tell RDoc about the new generator
   RDoc::RDoc.add_generator(self)
 
@@ -151,13 +155,15 @@ class RDoc::Generator::Emerald
   end
 
   def evaluate_classes_and_modules
-    mkdir @op_dir + "classmods"
-    root_path("..") # Class/module documentations reside all in the same subdirectory
-
     @classes_and_modules.each do |classmod|
-      title classmod.full_name
+      path = Pathname.new(classmod.full_name.split("::").join("/") + ".html")
 
-      File.open(@op_dir + "classmods" + classmod.full_name.gsub("::", "-"), "w") do |file|
+      mkdir_p   path.parent unless path.parent.directory?
+      title     classmod.full_name
+      root_path "../" * (classmod.full_name.split("::").count - 1) # Last element is a file
+
+
+      File.open(path, "w") do |file|
         file.write(render(:classmodule, binding))
       end
     end

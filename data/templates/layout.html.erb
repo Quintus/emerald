@@ -35,7 +35,9 @@
 
         <ul>
           <% @classes_and_modules.each do |classmod| %>
-            <li><%= classmod.full_name %></li>
+            <li>
+              <a href="<%= root_path + classmod.full_name.gsub('::', '/') + '.html' %>"><%= classmod.full_name %></a>
+            </li>
           <% end %>
         </ul>
       </div>

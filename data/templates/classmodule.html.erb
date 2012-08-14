@@ -1,4 +1,14 @@
-<h1>Class <%= classmod.full_name %></h1>
-<p>&lt; <%= classmod.parent.full_name %></p>
+<% if classmod.module? %>
+  <h1 class="module"><span class="classmod-leader">Module</span> <%= classmod.full_name %></h1>
+<% else %>
+  <h1 class="class"><span class="classmod-leader">Class</span> <%= classmod.full_name %></h1>
+  <p class="superclass">
+    <% if classmod.superclass.kind_of?(String) %>
+      Parent: <%= classmod.superclass %>
+    <% else %>
+      Parent: <%= classmod.formatter.link(classmod.superclass.full_name, classmod.superclass.full_name) %>
+    <% end %>
+  </p>
+<% end %>
 
 <%= classmod.description %>
