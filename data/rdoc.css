@@ -1,0 +1,89 @@
+/****************************************
+ * General styles
+ ****************************************/
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+h1 {
+    border-bottom: 1px solid gray;
+}
+
+h2 {
+    font-weight: bold;
+    color: #0E3062;
+}
+
+a {
+    color: #336699;
+}
+
+a:hover {
+    background-color: #336699;
+    color: white;
+}
+
+/****************************************
+ * Common elements
+ ****************************************/
+
+.clear {
+    clear: both;
+}
+
+div.index {
+    overflow: hidden;
+}
+
+div.index ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+div.index ul li {
+    font-size: small;
+}
+
+div.index-header {
+    border: 1px solid #0E3062;
+    background-color: #336699;
+    color: white;
+    font-size: 1.5em;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+div.index-header p {
+    margin: 0px;
+}
+
+p.toplevel-name {
+    float: right;
+    font-size: small;
+    text-align: right;
+    color: gray;
+}
+
+/****************************************
+ * Unique elements
+ ****************************************/
+
+div#indices {
+    float: left;
+    width: 19%; /* Some space */
+}
+
+div#content {
+    float: right;
+    width: 79%; /* Some space */
+    border-left: 2px dashed gray;
+    padding-left: 10px;
+}
+
+div#footer {
+    border-top: 1px solid gray;
+    font-size: small;
+    color: gray;
+}

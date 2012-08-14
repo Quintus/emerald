@@ -1,0 +1,16 @@
+= Emerald -- Make your Ruby documentation a jewel, too
+
+Ever thought that Darkfish is the worst RDoc template ever? Got lost
+in SDoc and Horo documentations? Found Hanna buggy? Then this is for
+you: Emerald, the only RDoc template which makes your Ruby docs a
+jewel, too.
+
+TODO: Write the rest of the README.
+
+== Installation
+
+TODO
+
+== License
+
+TODO
