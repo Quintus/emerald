@@ -1,0 +1,225 @@
+// Mixins
+
+/**
+ * The general layout for method documentations. It
+ * formats a header and a description with borders all
+ * around it. Fore- and background colours are chosen
+ * by you. */
+@mixin method-docs($border-color, $head-fg-color, $head-bg-color, $desc-fg-color, $desc-bg-color) {
+    $border: 1px solid $border-color;
+    border: $border;
+    background-color: $desc-bg-color; // Overridden for the header
+
+    div.header {
+        border-bottom: $border;
+        background-color: $head-bg-color;
+        color: $head-fg-color;
+    }
+
+    div.description { color: $desc-fg-color; }
+}
+
+/****************************************
+ * General styles
+ ****************************************/
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+}
+
+h1 {
+    border-bottom: 1px solid gray;
+}
+
+h2 {
+    font-weight: bold;
+    color: #0E3062;
+}
+
+h3 {
+    color: gray;
+    font-variant: small-caps;
+}
+
+a {
+    color: #336699;
+
+    &:hover {
+        background-color: #336699;
+        color: white;
+    }
+}
+
+/****************************************
+ * Common elements
+ ****************************************/
+
+.clear {
+    clear: both;
+}
+
+/********** Method docs **********/
+
+// Common stuff for all methods
+div.method {
+    margin-bottom: 5px;
+
+    // Common stuff for all method headers
+    div.header {
+        padding-left: 4px;
+        padding-right: 4px;
+        font: {
+            family: monospace;
+            size: 120%;
+            weight: bold;
+        }
+    }
+
+    // Common stuff for all method descriptions
+    div.description {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+}
+
+// Class methods (note same fg colour for public/protected headers)
+div.public-class    { @include method-docs(gray, black, #EEEEEE, black, #FFFFD2); }
+div.protected-class { @include method-docs(#005B10, black, #7FD58E, black, #DDFFDD); }
+div.private-class   { @include method-docs(#00FF00, #00FF00, #333333, white, black); }
+
+// Instance methods (note same fg colour for public/protected headers)
+div.public-instance    { @include method-docs(blue, white, #336699, black, #EEEEEE); }
+div.protected-instance { @include method-docs(black, white, #888888, black, #DDDDFF); }
+div.private-instance   { @include method-docs(yellow, yellow, #333333, white, black); }
+
+/********** Indices **********/
+
+div.index {
+    overflow: hidden; // Hangs into the content otherwise
+
+    // Remove indentation for the indexed items
+    ul {
+        list-style-type: none;
+        padding-left: 0px;
+
+        // Long names should be shown as far as possible
+        li { font-size: small; }
+    }
+
+    // Index captions
+    div.header {
+        border: 1px solid #0E3062;
+        background-color: #336699;
+        color: white;
+        text-align: center;
+        font: {
+            size: 1.5em;
+            variant: small-caps;
+        }
+
+        // Remove paragraph margins for more text space
+        p { margin: 0px; }
+    }
+}
+
+/********** Toplevel docs **********/
+
+p.toplevel-name {
+    float: right;
+    font-size: small;
+    text-align: right;
+    color: gray;
+}
+
+/********** Class/Module docs **********/
+
+h1.classmodule {
+    border: none;
+    margin-bottom: 0px;
+
+    span.leader {
+        font-size: 80%;
+        font-variant: small-caps;
+        color: gray;
+    }
+}
+
+p.superclass {
+    margin-top: 0px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 4px;
+    font-size: small;
+    color: gray;
+}
+
+/********** Constants docs **********/
+
+table.constants {
+    $border: 1px solid gray;
+
+    width: 100%;
+    border-collapse: collapse;
+    border: $border;
+
+    td { border: $border; }
+    th {
+        border: $border;
+        background-color: #EEEEEE;
+    }
+}
+
+/********** Sourcecode listings **********/
+
+p.show-source {
+    font-style: italic;
+}
+
+pre.source {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+
+    span {
+        &.ruby-keyword {
+            color: blue;
+            font-weight: bold;
+        }
+
+        &.ruby-regexp {
+            background-color: #006C0D;
+            color: white;
+        }
+
+        &.ruby-string {
+            background-color: #FFCDb3;
+            color: #FF5500;
+        }
+
+        &.ruby-ivar     { color: #000075; }
+        &.ruby-constant { color: #930093; }
+        &.ruby-comment  { color: #006C0D; }        
+    }
+}
+
+/****************************************
+ * Unique elements
+ ****************************************/
+
+div#indices {
+    float: left;
+    width: 19%; /* Some space */
+}
+
+div#content {
+    float: right;
+    width: 79%; /* Some space */
+    border-left: 2px dashed gray;
+    padding-left: 10px;
+}
+
+div#footer {
+    border-top: 1px solid gray;
+    font-size: small;
+    color: gray;
+}

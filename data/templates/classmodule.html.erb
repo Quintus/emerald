@@ -1,7 +1,7 @@
 <% if classmod.module? %>
-  <h1 class="module"><span class="classmod-leader">Module</span> <%= classmod.full_name %></h1>
+  <h1 class="classmodule"><span class="leader">Module</span> <%= classmod.full_name %></h1>
 <% else %>
-  <h1 class="class"><span class="classmod-leader">Class</span> <%= classmod.full_name %></h1>
+  <h1 class="classmodule"><span class="leader">Class</span> <%= classmod.full_name %></h1>
   <p class="superclass">
     <% if classmod.superclass.kind_of?(String) %>
       Parent: <%= classmod.superclass %>
@@ -36,7 +36,7 @@
     <% methods_by_type[type][visibility].sort_by(&:name).each do |method| %>
       <% p [method.full_name, method.file.name, method.line, method.offset] %>
 
-      <div class="method <%= "method-#{visibility}-#{type}" %>">
+      <div class="method <%= "#{visibility}-#{type}" %>">
         <div class="header">
           <%= method.arglists.gsub("\n", "<br/>") %>
         </div>
