@@ -49,10 +49,6 @@ class RDoc::Generator::Emerald
   class EmeraldError < StandardError
   end
 
-  # Test stuff.
-  class MyAwesomeError < EmeraldError
-  end
-
   # Tell RDoc about the new generator
   RDoc::RDoc.add_generator(self)
 
@@ -209,6 +205,7 @@ class RDoc::Generator::Emerald
     cp DATA_DIR + "rdoc.css", @op_dir
     cp DATA_DIR + "jquery.js", @op_dir
     cp DATA_DIR + "emerald.js", @op_dir
+    cp_r DATA_DIR + "images", @op_dir
   end
 
   def evaluate_toplevels

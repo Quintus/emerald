@@ -22,7 +22,7 @@
 /**
  * Heading mixins used for relative headings.
  */
-$heading-color: #0E3062; // Color used for some headings
+$heading-color: #0E3062; // Colour used for some headings
 
 @mixin relative-heading($border, $color, $f-family, $f-variant, $f-weight) {
     border-bottom: $border;
@@ -40,7 +40,6 @@ $heading-color: #0E3062; // Color used for some headings
 @mixin h4 { @include relative-heading(none, $heading-color, sans-serif, normal, bold); }
 @mixin h5 { @include relative-heading(none, black, sans-serif, normal, bold); }
 @mixin h6 { @include relative-heading(none, black, sans-serif, normal, normal); }
-
 
 /****************************************
  * General styles
@@ -60,6 +59,15 @@ a {
     &:hover {
         background-color: #336699;
         color: white;
+    }
+}
+
+dl {
+    border: 1px solid gray;
+
+    dt {
+        color: white;
+        background-color: gray;
     }
 }
 
@@ -188,6 +196,13 @@ table.constants {
         border: $border;
         background-color: #EEEEEE;
     }
+}
+
+/********** Attribute docs **********/
+
+ul.attribute-list {
+    list-style-image: url("images/tag_blue.png");
+    strong { color: #336699; }
 }
 
 /********** Sourcecode listings **********/

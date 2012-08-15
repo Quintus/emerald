@@ -42,12 +42,11 @@
 
 <% unless classmod.attributes.empty? %>
   <h2>Attributes</h2>
-  <dl>
+  <ul class="attribute-list">
     <% classmod.attributes.sort_by(&:name).each do |attr| %>
-      <dt><%= attr.name %></dt>
-      <dd><%= attr.description %></dd>
+      <li><strong><%= "#{attr.name}<sup>[#{attr.rw}]</sup>" %></strong><br/><%= attr.description %></li>
     <% end %>
-  </dl>
+  </ul>
 <% end %>
 
 <% methods_by_type = classmod.methods_by_type %>
