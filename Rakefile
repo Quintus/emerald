@@ -8,4 +8,5 @@ RDoc::Task.new do |rt|
   rt.title = "Emerald RDocs"
   rt.main = "README.rdoc"
   rt.rdoc_dir = "doc"
+  rt.options << "-a"
 end

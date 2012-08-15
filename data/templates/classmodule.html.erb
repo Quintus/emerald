@@ -18,7 +18,38 @@
   <table class="constants">
     <tr><th>Name</th><th>Value</th><th>Description</th></tr>
     <% classmod.constants.each do |const| %>
-      <tr><td><%= const.name %></td><td style="font-family: monospace"><%= const.value.chars.count > 20 ? const.value.chars.first(20).join + "..." : const.value %></td><td><%= const.description %></td></tr>
+      <% abbrev_value = const.value.chars.count > 20 ? const.value.chars.first(20).join + "..." : const.value %>
+      <tr><td><%= const.name %></td><td style="font-family: monospace"><%= abbrev_value %></td><td><%= const.description %></td></tr>
     <% end %>
   </table>
+<% end %>
+
+<% methods_by_type = classmod.methods_by_type %>
+<% ["class", "instance"].each do |type| %>                   <%# Yes, these are strings... %>
+  <% [:public, :protected, :private].each do |visibility| %> <%# ...and these symbols. %>
+    <%# Where there are no methods defined, there is no need for docs. %>
+    <% next if methods_by_type[type].empty? %>
+    <% next if methods_by_type[type][visibility].empty? %>
+
+    <h2><%= "#{visibility.capitalize} #{type.capitalize} Methods" %></h2>
+
+    <% methods_by_type[type][visibility].sort_by(&:name).each do |method| %>
+      <% p [method.full_name, method.file.name, method.line, method.offset] %>
+
+      <div class="method <%= "method-#{visibility}-#{type}" %>">
+        <div class="header">
+          <%= method.arglists.gsub("\n", "<br/>") %>
+        </div>
+        <div class="description">
+          <%= method.description %>
+
+          <%# Source link and display %>
+          <p class="show-source"><a href="#">[Show source]</a></p>
+          <pre class="source" style="display: none">
+<%= method.markup_code %>
+          </pre>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>

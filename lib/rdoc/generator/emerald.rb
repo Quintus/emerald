@@ -46,6 +46,22 @@ class RDoc::Generator::Emerald
     # TODO
   end
 
+  class << self
+
+    protected
+
+    # Protected foo.
+    def foo
+    end
+
+    private
+
+    # Private bar.
+    def bar
+    end
+
+  end
+
   # Instanciates this generator. Automatically called
   # by RDoc.
   # ==Parameter
@@ -156,6 +172,7 @@ class RDoc::Generator::Emerald
 
   def evaluate_classes_and_modules
     @classes_and_modules.each do |classmod|
+
       path = Pathname.new(classmod.full_name.split("::").join("/") + ".html")
 
       mkdir_p   path.parent unless path.parent.directory?
