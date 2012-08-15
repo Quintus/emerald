@@ -19,28 +19,40 @@
     div.description { color: $desc-fg-color; }
 }
 
+/**
+ * Heading mixins used for relative headings.
+ */
+$heading-color: #0E3062; // Color used for some headings
+
+@mixin relative-heading($border, $color, $f-family, $f-variant, $f-weight) {
+    border-bottom: $border;
+    color: $color;
+    font: {
+        family: $f-family;
+        variant: $f-variant;
+        weight: $f-weight;
+    }
+}
+
+@mixin h1 { @include relative-heading(1px solid gray, black, serif, normal, normal); }
+@mixin h2 { @include relative-heading(1px dotted $heading-color, $heading-color, serif, normal, bold); }
+@mixin h3 { @include relative-heading(none, gray, serif, small-caps, normal); }
+@mixin h4 { @include relative-heading(none, $heading-color, sans-serif, normal, bold); }
+@mixin h5 { @include relative-heading(none, black, sans-serif, normal, bold); }
+@mixin h6 { @include relative-heading(none, black, sans-serif, normal, normal); }
+
+
 /****************************************
  * General styles
  ****************************************/
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: Georgia, serif;
-    font-weight: normal;
-}
-
-h1 {
-    border-bottom: 1px solid gray;
-}
-
-h2 {
-    font-weight: bold;
-    color: #0E3062;
-}
-
-h3 {
-    color: gray;
-    font-variant: small-caps;
-}
+// Default heading styles. Overriden for relative headings.
+h1 { @include h1; }
+h2 { @include h2; }
+h3 { @include h3; }
+h4 { @include h4; }
+h5 { @include h5; }
+h6 { @include h6; }
 
 a {
     color: #336699;
@@ -64,6 +76,15 @@ a {
 // Common stuff for all methods
 div.method {
     margin-bottom: 5px;
+
+    /* Shift headings down by 1, so that a level-2
+     * heading effectively becomes a level-3 one. */
+    h1 { @include h2; } // Shame on those guys using a level-1 heading in a method!
+    h2 { @include h3; font-size: 120%}
+    h3 { @include h4; }
+    h4 { @include h5; }
+    h5 { @include h6; }
+    // Don’t care about level-6 and deeper...
 
     // Common stuff for all method headers
     div.header {
