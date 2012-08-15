@@ -16,7 +16,7 @@
 
         <ul>
           <% @toplevels.each do |tl| %>
-            <% target = "#{@op_dir + 'toplevels' + tl.relative_name}.html" %>
+            <% target = root_path + rdocize_toplevel(tl) %>
             <% if tl.name.end_with?(".rdoc") %>
               <li class="rdoc-file"><a href="<%= target %>"><%= tl.name %></a></li>
             <% else %>
@@ -36,7 +36,7 @@
         <ul>
           <% @classes_and_modules.each do |classmod| %>
             <li>
-              <a href="<%= root_path + classmod.full_name.gsub('::', '/') + '.html' %>"><%= classmod.full_name %></a>
+              <a href="<%= root_path + rdocize_classmod(classmod) %>"><%= classmod.full_name %></a>
             </li>
           <% end %>
         </ul>
@@ -49,7 +49,11 @@
 
         <ul>
           <% @methods.each do |method| %>
-            <li><%= method.pretty_name %>&nbsp;(<%= method.parent.full_name %>)</li>
+            <li>
+              <a href="<%= root_path + "#{rdocize_classmod(method.parent)}##{method.aref}" %>">
+                <%= method.pretty_name %>&nbsp;()(<%= method.parent.full_name %>)
+              </a>
+            </li>
           <% end %>
         </ul>
       </div>

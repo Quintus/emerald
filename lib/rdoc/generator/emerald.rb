@@ -119,9 +119,9 @@ class RDoc::Generator::Emerald
 
   def root_path(set_to = nil)
     if set_to
-      @root_path = set_to
+      @root_path = Pathname.new(set_to)
     else
-      @root_path ||= ""
+      @root_path ||= Pathname.new("./")
     end
   end
 
@@ -133,6 +133,22 @@ class RDoc::Generator::Emerald
     end
   end
 
+  # Takes a RDoc::TopLevel and transforms it into a complete pathname
+  # relative to the output directory. Filename alterations
+  # done by RDoc’s crossref-HTML formatter are honoured. Note you
+  # have to prepend #root_path to get a complete href.
+  def rdocize_toplevel(toplevel)
+    Pathname.new("#{toplevel.relative_name.gsub(".", "_")}.html")
+  end
+
+  # Takes a RDoc::ClassModule and transforms it into a complete pathname
+  # relative to the output directory. Filename alterations
+  # done by RDoc’s crossref-HTML formatter are honoured. Note you
+  # have to prepend #root_path to get a complete href.
+  def rdocize_classmod(classmod)
+    Pathname.new(classmod.full_name.split("::").join("/") + ".html")
+  end
+
   private
 
   def copy_base_files
@@ -142,25 +158,22 @@ class RDoc::Generator::Emerald
   end
 
   def evaluate_toplevels
-    mkdir @op_dir + "toplevels"
-
     @toplevels.each do |toplevel|
-      main             = toplevel.description
-      root_path("../" * toplevel.relative_name.split("/").count)
+      root_path("../" * (toplevel.relative_name.split("/").count - 1)) # Last component is a filename
       title toplevel.relative_name
 
       # Create the path to the file if necessary
-      path = @op_dir + "toplevels" + Pathname.new(toplevel.relative_name)
+      path = @op_dir + rdocize_toplevel(toplevel)
       mkdir_p path.parent unless path.parent.exist?
 
       # Evaluate the actual file documentation
-      File.open("#{path}.html", "w") do |file|
+      File.open(path, "w") do |file|
         file.write(render(:toplevel, binding))
       end
 
       # If this toplevel is supposed to be the main file,
       # copy it’s content to the index.html file.
-      if toplevel.full_name == @options.main_page
+      if toplevel.relative_name == @options.main_page
         root_path "./" # We *are* at the top here
 
         File.open(@op_dir + "index.html", "w") do |file|
@@ -173,7 +186,7 @@ class RDoc::Generator::Emerald
   def evaluate_classes_and_modules
     @classes_and_modules.each do |classmod|
 
-      path = Pathname.new(classmod.full_name.split("::").join("/") + ".html")
+      path = @op_dir + rdocize_classmod(classmod)
 
       mkdir_p   path.parent unless path.parent.directory?
       title     classmod.full_name

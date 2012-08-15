@@ -6,7 +6,7 @@
     <% if classmod.superclass.kind_of?(String) %>
       Parent: <%= classmod.superclass %>
     <% else %>
-      Parent: <%= classmod.formatter.link(classmod.superclass.full_name, classmod.superclass.full_name) %>
+      Parent: <a href="<%= root_path + rdocize_classmod(classmod.superclass) %>"><%= classmod.superclass.full_name %></a>
     <% end %>
   </p>
 <% end %>
@@ -34,9 +34,7 @@
     <h2><%= "#{visibility.capitalize} #{type.capitalize} Methods" %></h2>
 
     <% methods_by_type[type][visibility].sort_by(&:name).each do |method| %>
-      <% p [method.full_name, method.file.name, method.line, method.offset] %>
-
-      <div class="method <%= "#{visibility}-#{type}" %>">
+      <div class="method <%= "#{visibility}-#{type}" %>" id="<%= method.aref %>">
         <div class="header">
           <%= method.arglists.gsub("\n", "<br/>") %>
         </div>
