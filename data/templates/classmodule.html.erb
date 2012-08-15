@@ -13,6 +13,22 @@
 
 <%= classmod.description %>
 
+<% unless classmod.includes.empty? %>
+  <h2>Includes</h2>
+  <ul>
+    <% classmod.includes.sort_by(&:name).each do |inc| %>
+      <li>
+        <% result = inc.module %>
+        <% if result.kind_of?(String) %>
+          <%= result %>
+        <% else %>
+          <a href="<%= root_path + rdocize_classmod(result) %>"><%= result.full_name %></a>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <% unless classmod.constants.empty? %>
   <h2>Constants</h2>
   <table class="constants">
@@ -22,6 +38,16 @@
       <tr><td><%= const.name %></td><td style="font-family: monospace"><%= abbrev_value %></td><td><%= const.description %></td></tr>
     <% end %>
   </table>
+<% end %>
+
+<% unless classmod.attributes.empty? %>
+  <h2>Attributes</h2>
+  <dl>
+    <% classmod.attributes.sort_by(&:name).each do |attr| %>
+      <dt><%= attr.name %></dt>
+      <dd><%= attr.description %></dd>
+    <% end %>
+  </dl>
 <% end %>
 
 <% methods_by_type = classmod.methods_by_type %>
