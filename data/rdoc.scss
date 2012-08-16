@@ -182,6 +182,28 @@ p.superclass {
     color: gray;
 }
 
+div.method-overview {
+    float: right;
+    width: 25%;
+    overflow: hidden;
+    border: 1px solid gray;
+    background-color: #EEEEEE;
+
+    p {
+        margin: 10px 0px 0px 0px;
+        font-size: 120%;
+        font-variant: small-caps;
+        color: gray;
+        text-align: center;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 10px;
+    }
+
+}
+
 /********** Constants docs **********/
 
 table.constants {

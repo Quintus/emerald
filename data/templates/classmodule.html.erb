@@ -1,3 +1,4 @@
+<%############ Class/Module title #############%>
 <% if classmod.module? %>
   <h1 class="classmodule"><span class="leader">Module</span> <%= classmod.full_name %></h1>
 <% else %>
@@ -11,8 +12,25 @@
   </p>
 <% end %>
 
-<%= classmod.description %>
+<%############ Method overview #############%>
+<% unless classmod.method_list.empty? %>
+  <div class="method-overview">
+    <p>Method List</p>
+    <ul>
+      <% classmod.each_method do |method| %>
+        <li>
+          <a href="#<%= method.aref %>"><%= method.pretty_name %></a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
+<%############ Description #############%>
+<%= classmod.description %>
+<div class="clear"><!-- Long method lists shouldn't hang into the remaining docs --></div>
+
+<%############ Includes #############%>
 <% unless classmod.includes.empty? %>
   <h2>Includes</h2>
   <ul>
@@ -29,6 +47,7 @@
   </ul>
 <% end %>
 
+<%############ Constants #############%>
 <% unless classmod.constants.empty? %>
   <h2>Constants</h2>
   <table class="constants">
@@ -40,6 +59,7 @@
   </table>
 <% end %>
 
+<%############ Attributes #############%>
 <% unless classmod.attributes.empty? %>
   <h2>Attributes</h2>
   <ul class="attribute-list">
@@ -49,6 +69,7 @@
   </ul>
 <% end %>
 
+<%############ Methods #############%>
 <% methods_by_type = classmod.methods_by_type %>
 <% ["class", "instance"].each do |type| %>                   <%# Yes, these are strings... %>
   <% [:public, :protected, :private].each do |visibility| %> <%# ...and these symbols. %>
