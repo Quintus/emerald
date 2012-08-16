@@ -65,6 +65,9 @@ $heading-color: #0E3062; // Colour used for some headings
 /****************************************
  * General styles
  ****************************************/
+body {
+    background-color: white;
+}
 
 // Default heading styles. Overriden for relative headings.
 h1 { @include h1; }
@@ -266,30 +269,33 @@ p.show-source {
     font-style: italic;
 }
 
-pre.ruby {
-    border: 1px solid black;
-    background-color: white;
-    color: black;
+pre {
+    overflow-x: auto;
+    border: 1px solid gray;
+    padding: 4px;
+    background-color: #222222;
+    color: white;
+}
 
+pre.ruby {
     span {
         &.ruby-keyword {
-            color: blue;
+            color: #00CCCC;
             font-weight: bold;
         }
 
         &.ruby-regexp {
             background-color: #006C0D;
-            color: white;
+            color: #222222;
         }
 
         &.ruby-string {
-            background-color: #FFCDb3;
             color: #FF5500;
         }
 
-        &.ruby-ivar     { color: #000075; }
-        &.ruby-constant { color: #930093; }
-        &.ruby-comment  { color: #006C0D; }        
+        &.ruby-ivar     { color: #4444C8; }
+        &.ruby-constant { color: #AA00AA; }
+        &.ruby-comment  { color: #008E2F; }
     }
 }
 
