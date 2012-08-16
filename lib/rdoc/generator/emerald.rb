@@ -106,21 +106,7 @@ class RDoc::Generator::Emerald
   def generate(top_levels)
     @toplevels = top_levels
     @classes_and_modules = RDoc::TopLevel.all_classes_and_modules.sort_by{|klass| klass.full_name}
-    @methods = @classes_and_modules.map{|mod| mod.method_list}.flatten.sort do |m1, m2|
-      if m1.name_prefix == m2.name_prefix
-        # If both are class or instance methods, sort by name
-        m1.name <=> m2.name
-      elsif m1.name_prefix == "::"
-        # Class methods go first
-        -1
-      elsif m1.name_prefix == "#"
-        # Instance methods go second
-        1
-      else
-        # Shouldn’t happen
-        nil
-      end
-    end
+    @methods = @classes_and_modules.map{|mod| mod.method_list}.flatten.sort
 
     # Create the output directory    
     mkdir @op_dir unless @op_dir.exist?
