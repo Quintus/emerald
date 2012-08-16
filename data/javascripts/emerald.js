@@ -12,6 +12,7 @@ $(document).ready(function(){
         return false;
     });
 
+    // The function for showing/hiding a method’s sourcecode.
     $("p.show-source a").click(function(event){
         $(this).parent().next().toggle("slow");
 
@@ -22,4 +23,15 @@ $(document).ready(function(){
 
         return false;
     });
+
+    // The function that displays the ¶ sign when hovering
+    // over a heading (except level-1 headings).
+    $("h2, h3, h4, h5, h6").hover(
+        function(event){
+            $(this).append('<a class="para" href="' + window.location.pathname + '#' + $(this).attr('id') + '">&nbsp;¶</a>');
+        },
+        function(event){
+            $(this).find("a:last").remove();
+        }
+    );
 });

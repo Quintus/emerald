@@ -79,6 +79,17 @@ dl {
     clear: both;
 }
 
+/* The ¶ signs on headings */
+a.para {
+    text-decoration: none;
+    color: gray;
+
+    &:hover {
+        background: none;
+        color: gray;
+    }
+}
+
 /********** Method docs **********/
 
 // Common stuff for all methods
