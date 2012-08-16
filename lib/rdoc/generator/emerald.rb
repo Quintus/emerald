@@ -188,10 +188,11 @@ class RDoc::Generator::Emerald
   private
 
   def copy_base_files
-    cp DATA_DIR + "rdoc.css", @op_dir
-    cp DATA_DIR + "jquery.js", @op_dir
-    cp DATA_DIR + "emerald.js", @op_dir
-    cp_r DATA_DIR + "images", @op_dir
+    mkdir @op_dir + "stylesheets" unless File.directory?(@op_dir + "stylesheets")
+
+    cp   Dir[DATA_DIR + "stylesheets" + "*.css"], @op_dir + "stylesheets"
+    cp_r DATA_DIR + "javascripts", @op_dir
+    cp_r DATA_DIR + "images",      @op_dir
   end
 
   def evaluate_toplevels

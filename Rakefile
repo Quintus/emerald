@@ -1,17 +1,20 @@
 # -*- ruby -*-
 require "rake"
+require "rake/clean"
 require "rdoc/task"
 require "sass"
 require_relative "lib/rdoc/generator/emerald"
 
-task :rdoc => :gen_stylesheet
+CLEAN.include("data/stylesheets/*.css")
+
+task :rdoc => :gen_stylesheets
 desc "Converts the SCSS stylsheet to CSS."
-task :gen_stylesheet do
-  cd "data"
-  puts "Rendering SCSS to CSS..."
+task :gen_stylesheets do
+  cd "data/stylesheets"
+  puts "rdoc.scss -> rdoc.css"
   engine = Sass::Engine.new(File.read("rdoc.scss"), syntax: :scss)
   File.open("rdoc.css", "w"){|f| f.write(engine.render)}
-  cd ".."
+  cd "../.."
 end
 
 RDoc::Task.new do |rt|
