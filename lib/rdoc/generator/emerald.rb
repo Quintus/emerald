@@ -73,8 +73,10 @@ class RDoc::Generator::Emerald
   # The version number.
   VERSION = "0.0.1-dev"
 
+  # Add additional options to RDoc (see the
+  # RDoc::Generator::Emerald::Options module).
   def self.setup_options(options)
-    # TODO
+    options.extend(RDoc::Generator::Emerald::Options)
   end
 
   class << self
@@ -254,3 +256,5 @@ class RDoc::Generator::Emerald
   end
 
 end
+
+require_relative "emerald/options"

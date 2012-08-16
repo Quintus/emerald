@@ -40,6 +40,38 @@ From a rake RDoc::Task:
     rt.generator = "emerald"
   end
 
+== Features
+
+* Default theme has is centered around light blue/grey, just as Hanna was.
+* No frames.
+* Uses jQuery[http://jquery.com].
+* Generates a Table of Contents (ToC) for toplevel file docs (so yes,
+  your README will have a ToC).
+* Classical file/class/method indices for best overview.
+* Provides an easy way to get the anchor links for all your headings.
+* Darkfish-link compatible, i.e. if you switch to Emerald from Darkfish,
+  the old links to your documentation will still work.
+  * But note this is not the case for the other way round, as Emerald
+    allows you linking to more stuff.
+* GPL’ed. Free software.
+
+== Weblinks
+
+* Sourcecode: https://github.com/Quintus/emerald
+* Bugtracker: https://github.com/Quintus/emerald/issues
+
+== Thanks
+
+Thanks to Eric Hodel keeping RDoc in an active and alive
+state. Without this, there would be no point in developing
+Emerald. Next my gratitude is dedicated at {Mislav
+Marohnić}[https://github.com/mislav] for creating the {Hanna RDoc
+template}[https://github.com/mislav/hanna], which sadly is not
+maintained anymore, but was a big inspiration for Emerald and its
+default theme, and to everyone on the web who posted something on
+RDoc’s internals. Without you, it wouldn’t have been possible to get
+Emerald to where it currently is.
+
 == License
 
 Emerald is an RDoc HTML generator.

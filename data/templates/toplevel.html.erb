@@ -1,3 +1,13 @@
 <p class="toplevel-name"><%= toplevel.full_name %></p>
 
 <%= toplevel.description %>
+
+<% if @options.generate_toc %>
+  <script>
+    html = "<div class=\"toc\"><p>Contents</p>";
+    html += generate_toc();
+    html += "</div>";
+
+    $(html).insertAfter("h1");
+  </script>
+<% end %>

@@ -41,6 +41,27 @@ $heading-color: #0E3062; // Colour used for some headings
 @mixin h5 { @include relative-heading(none, black, sans-serif, normal, bold); }
 @mixin h6 { @include relative-heading(none, black, sans-serif, normal, normal); }
 
+/**
+ * Everything that is somehow ToC-like includes
+ * this mixin. */
+@mixin toc {
+    float: right;
+    width: 25%;
+    overflow: hidden;
+    margin-top: 4px;
+    margin-left: 4px;
+    border: 1px solid gray;
+    background-color: #EEEEEE;
+
+    p {
+        margin: 10px 0px 0px 0px;
+        font-size: 120%;
+        font-variant: small-caps;
+        color: gray;
+        text-align: center;
+    }
+}
+
 /****************************************
  * General styles
  ****************************************/
@@ -172,6 +193,15 @@ p.toplevel-name {
     color: gray;
 }
 
+div.toc {
+    @include toc;
+
+    ul {
+        list-style-type: none;
+        padding-left: 20px;
+    }
+}
+
 /********** Class/Module docs **********/
 
 h1.classmodule {
@@ -185,6 +215,10 @@ h1.classmodule {
     }
 }
 
+h1.module {
+    border-bottom: 1px solid gray;
+}
+
 p.superclass {
     margin-top: 0px;
     border-bottom: 1px solid gray;
@@ -194,19 +228,7 @@ p.superclass {
 }
 
 div.method-overview {
-    float: right;
-    width: 25%;
-    overflow: hidden;
-    border: 1px solid gray;
-    background-color: #EEEEEE;
-
-    p {
-        margin: 10px 0px 0px 0px;
-        font-size: 120%;
-        font-variant: small-caps;
-        color: gray;
-        text-align: center;
-    }
+    @include toc;
 
     ul {
         list-style-type: none;
