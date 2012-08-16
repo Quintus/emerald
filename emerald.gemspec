@@ -28,7 +28,7 @@ by Hanna, but does not share any code with it (and does not use frames!).
     Dir["data/javascripts/*.js"] +
     Dir["data/images/*.png"] +
     Dir["data/templates/*.html.erb"] +
-    ["COPYING", "VERSION"]
+    ["VERSION"]
 
   # RDoc extra information
   spec.extra_rdoc_files = Dir["**/*.rdoc"] + ["COPYING"]

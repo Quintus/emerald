@@ -48,12 +48,13 @@ From a rake RDoc::Task:
 * Generates a Table of Contents (ToC) for toplevel file docs (so yes,
   your README will have a ToC).
 * Classical file/class/method indices for best overview.
-* Provides an easy way to get the anchor links for all your headings.
+* Regular-expression-powered javascript search
 * Darkfish-link compatible, i.e. if you switch to Emerald from Darkfish,
   the old links to your documentation will still work.
   * But note this is not the case for the other way round, as Emerald
     allows you linking to more stuff.
 * GPL’ed. Free software.
+* And more...
 
 == Weblinks
 
@@ -93,8 +94,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 === Additional notes
 
-* You can find the GNU GPL in the file COPYING.
+* You can find the GNU GPL in the file COPYING.rdoc.
 * This project incorporates some code and data (mainly images) from
   RDoc and the projects RDoc in turn uses stuff from. See the file
-  LEGAL.rdoc for more information.
+  LEGAL.rdoc for more information. Same goes for the jQuery licensing
+  conditions.
 * You can contact me at quintus ÄT quintilianus DÖT eu.

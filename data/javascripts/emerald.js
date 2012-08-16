@@ -34,4 +34,17 @@ $(document).ready(function(){
             $(this).find("a:last").remove();
         }
     );
+
+    $("form#search p input").keyup(function(event){
+        term = new RegExp($(this).val(), "i");
+
+        // Method index
+        $("div#method-index ul li, div#class-index ul li").each(function(index){
+            var result = $(this).text().match(term);
+            if (result)
+                $(this).show();
+            else
+                $(this).hide();
+        });
+    });
 });
