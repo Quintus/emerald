@@ -53,7 +53,7 @@ class RDoc::Generator::Emerald
   RDoc::RDoc.add_generator(self)
 
   # Description displayed in RDoc’s help.
-  DESCRIPTION = "Modern generator for RDoc"
+  DESCRIPTION = "The only RDoc generator that makes your Ruby documentation a jewel, too"
 
   # Root directory of this project.
   ROOT_DIR = Pathname.new(__FILE__).dirname.parent.parent.parent
@@ -71,7 +71,7 @@ class RDoc::Generator::Emerald
   }
 
   # The version number.
-  VERSION = "0.0.1-dev"
+  VERSION = File.read(ROOT_DIR + "VERSION").chomp.freeze
 
   # Add additional options to RDoc (see the
   # RDoc::Generator::Emerald::Options module).
