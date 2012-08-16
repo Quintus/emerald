@@ -19,9 +19,8 @@ end
 
 RDoc::Task.new do |rt|
   rt.generator = "emerald"
-  rt.rdoc_files.include("**/*.rdoc", "lib/**/*.rb")
+  rt.rdoc_files.include("**/*.rdoc", "lib/**/*.rb", "COPYING")
   rt.title = "Emerald RDocs"
   rt.main = "README.rdoc"
   rt.rdoc_dir = "doc"
-  rt.options << "-a"
 end

@@ -1,16 +1,68 @@
 = Emerald -- Make your Ruby documentation a jewel, too
 
-Ever thought that Darkfish is the worst RDoc template ever? Got lost
-in SDoc and Horo documentations? Found Hanna buggy? Then this is for
-you: Emerald, the only RDoc template which makes your Ruby docs a
-jewel, too.
+You think Darkfish is the worst RDoc generator ever? Got lost in SDoc
+and Horo documentations? Found Hanna buggy and dislike frames?  Then
+this is for you: Emerald, the only RDoc template which makes your Ruby
+docs a jewel, too.
 
-TODO: Write the rest of the README.
+Emerald is a generator for RDoc[http://rdoc.rubyforge.org], i.e. a
+plugin that replaces RDoc’s standard _Darkfish_ generator from which
+many people (myself included) think it’s the ugliest RDoc layouting
+engine that ever was around. If you want nice and modern documentation
+that allows you to retain overview over a library, Emerald is the
+generator you want to use.
 
 == Installation
 
-TODO
+TODO: Emerald will be available via RubyGems soon...
+
+If you want the latest version, check out the Git repisitory and build
+the gem yourself:
+
+  $ git clone git://github.com/Quintus/emerald
+  $ cd emarald
+  $ rake gem
+  $ gem install pkg/emerald-x.x.x.gem
+
+== Usage
+
+From the commandline:
+
+  $ rdoc -f emerald YOURFILESHERE
+
+From a rake RDoc::Task:
+
+  require "rdoc/task"
+  require "rdoc/generator/emerald"
+
+  RDoc::Task.new do |rt|
+    # Your option stuff...
+    rt.generator = "emerald"
+  end
 
 == License
 
-TODO
+Emerald is an RDoc HTML generator.
+
+Copyright © 2012 Marvin Gülker
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+=== Additional notes
+
+* You can find the GNU GPL in the file COPYING.
+* This project incorporates some code and data (mainly images) from
+  RDoc and the projects RDoc in turn uses stuff from. See the file
+  LEGAL.rdoc for more information.
+* You can contact me at quintus ÄT quintilianus DÖT eu.
