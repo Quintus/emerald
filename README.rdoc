@@ -48,7 +48,7 @@ From a rake RDoc::Task:
 * Generates a Table of Contents (ToC) for toplevel file docs (so yes,
   your README will have a ToC).
 * Classical file/class/method indices for best overview.
-* Regular-expression-powered javascript search
+* Regular-Expression-powered JavaScript search.
 * Darkfish-link compatible, i.e. if you switch to Emerald from Darkfish,
   the old links to your documentation will still work.
   * But note this is not the case for the other way round, as Emerald
@@ -60,6 +60,17 @@ From a rake RDoc::Task:
 
 * Sourcecode: https://github.com/Quintus/emerald
 * Bugtracker: https://github.com/Quintus/emerald/issues
+
+== Caveats
+
+* ToC generation only works for proper heading nestings, especially it
+  assumes your page to have <b>exactly one</b> level-1 heading. Having more
+  of these is bad style, and Emerald wants to encourage good
+  documentation/markup style.
+* The search uses JavaScript’s regular expressions, so the quite
+  advanced constructs you can create with Ruby’s Regular Expressions
+  won’t work with all cases. But don’t tell me you search your API
+  documentation with constructs like <tt>\A(?>[^ab]q)\s*%.*stuff(?<!badstuff)\w{2,4}(?:$|\\\\)</tt>.
 
 == Thanks
 
