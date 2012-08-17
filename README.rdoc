@@ -71,6 +71,8 @@ From a rake RDoc::Task:
   advanced constructs you can create with Ruby’s Regular Expressions
   won’t work with all cases. But don’t tell me you search your API
   documentation with constructs like <tt>\A(?>[^ab]q)\s*%.*stuff(?<!badstuff)\w{2,4}(?:$|\\\\)</tt>.
+* Emerald is a bit slow at the moment. However, I did not optimise it
+  for speed. This may or may not change in the future.
 
 == Thanks
 
