@@ -54,7 +54,9 @@
 
         <ul>
           <% @methods.each do |method| %>
-            <li><a href="<%= root_path + "#{rdocize_classmod(method.parent)}##{method.aref}" %>"><%= method.pretty_name %></a>&nbsp;(<%= method.parent.full_name %>)</li>
+            <li><a href="<%= root_path +
+          "#{rdocize_classmod(method.parent)}##{method.aref}"
+          %>"><%= method.pretty_name %></a>&nbsp;<span class="method-classname">(<%= method.parent.full_name %>)</span></li>
           <% end %>
         </ul>
       </div>
