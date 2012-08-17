@@ -115,6 +115,11 @@ a.para {
     }
 }
 
+/* These spans are created by the search field */
+span.search-result {
+    background-color: yellow;
+}
+
 /********** Method docs **********/
 
 // Common stuff for all methods
