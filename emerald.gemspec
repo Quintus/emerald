@@ -31,6 +31,6 @@ by Hanna, but does not share any code with it (and does not use frames!).
     ["VERSION"]
 
   # RDoc extra information
-  spec.extra_rdoc_files = Dir["**/*.rdoc"] + ["COPYING"]
+  spec.extra_rdoc_files = Dir["**/*.rdoc"]
   spec.rdoc_options << "-t" << "Emerald RDocs" << "-m" << "README.rdoc"
 end
