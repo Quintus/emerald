@@ -14,7 +14,11 @@ generator you want to use.
 
 == Installation
 
-TODO: Emerald will be available via RubyGems soon...
+Emerald is currently Alpha software. Use it at your own risk.
+
+Get the current development release via RubyGems:
+
+  # gem install emerald --pre
 
 If you want the latest version, check out the Git repisitory and build
 the gem yourself:
