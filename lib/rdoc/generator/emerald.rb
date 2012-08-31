@@ -79,22 +79,6 @@ class RDoc::Generator::Emerald
     options.extend(RDoc::Generator::Emerald::Options)
   end
 
-  class << self
-
-    protected
-
-    # Protected foo.
-    def foo
-    end
-
-    private
-
-    # Private bar.
-    def bar
-    end
-
-  end
-
   # Instanciates this generator. Automatically called
   # by RDoc.
   # ==Parameter
@@ -184,7 +168,7 @@ class RDoc::Generator::Emerald
   # done by RDoc’s crossref-HTML formatter are honoured. Note you
   # have to prepend #root_path to get a complete href.
   def rdocize_classmod(classmod)
-    Pathname.new(classmod.full_name.split("::").join("/") + ".html")
+    Pathname.new("#{classmod.full_name.split("::").join("/")}.html")
   end
 
   private
@@ -225,7 +209,6 @@ class RDoc::Generator::Emerald
 
   def evaluate_classes_and_modules
     @classes_and_modules.each do |classmod|
-
       path = @op_dir + rdocize_classmod(classmod)
 
       mkdir_p   path.parent unless path.parent.directory?

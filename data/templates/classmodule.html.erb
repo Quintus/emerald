@@ -4,10 +4,11 @@
 <% else %>
   <h1 class="classmodule"><span class="leader">Class</span> <%= classmod.full_name %></h1>
   <p class="superclass">
-    <% if classmod.superclass.kind_of?(String) %>
-      Parent: <%= classmod.superclass %>
+    <% klass = classmod.superclass %>
+    <% if klass.kind_of?(String) %>
+      Parent: <%= klass %>
     <% else %>
-      Parent: <a href="<%= root_path + rdocize_classmod(classmod.superclass) %>"><%= classmod.superclass.full_name %></a>
+      Parent: <a href="<%= root_path + rdocize_classmod(klass) %>"><%= klass.full_name %></a>
     <% end %>
   </p>
 <% end %>
@@ -34,7 +35,7 @@
 <% unless classmod.includes.empty? %>
   <h2 id="includes">Includes</h2>
   <ul>
-    <% classmod.includes.sort_by(&:name).each do |inc| %>
+    <% classmod.includes.each do |inc| %>
       <li>
         <% result = inc.module %>
         <% if result.kind_of?(String) %>
@@ -53,7 +54,7 @@
   <table class="constants">
     <tr><th>Name</th><th>Value</th><th>Description</th></tr>
     <% classmod.constants.each do |const| %>
-      <% abbrev_value = const.value.chars.count > 20 ? const.value.chars.first(20).join + "..." : const.value %>
+      <% abbrev_value = const.value.chars.count > 20 ? "#{const.value.chars.first(20).join}..." : const.value %>
       <tr><td><%= const.name %></td><td style="font-family: monospace"><%= abbrev_value %></td><td><%= const.description %></td></tr>
     <% end %>
   </table>
@@ -63,7 +64,7 @@
 <% unless classmod.attributes.empty? %>
   <h2 id="attributes">Attributes</h2>
   <ul class="attribute-list">
-    <% classmod.attributes.sort_by(&:name).each do |attr| %>
+    <% classmod.attributes.each do |attr| %>
       <li><strong><%= "#{attr.name}<sup>[#{attr.rw}]</sup>" %></strong><br/><%= attr.description %></li>
     <% end %>
   </ul>
@@ -79,7 +80,7 @@
 
     <h2 id="<%= "#{visibility}-#{type}-methods" %>"><%= "#{visibility.capitalize} #{type.capitalize} Methods" %></h2>
 
-    <% methods_by_type[type][visibility].sort_by(&:name).each do |method| %>
+    <% methods_by_type[type][visibility].each do |method| %>
       <div class="method <%= "#{visibility}-#{type}" %>" id="<%= method.aref %>">
         <div class="header">
           <%= method.arglists.gsub("\n", "<br/>") %>
