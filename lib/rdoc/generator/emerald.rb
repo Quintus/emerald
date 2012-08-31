@@ -89,7 +89,15 @@ class RDoc::Generator::Emerald
     @op_dir = Pathname.pwd.expand_path + @options.op_dir
   end
 
+  # Outputs a string on standard output, but only if RDoc
+  # was invoked with the <tt>--debug</tt> switch.
+  def debug(str)
+    puts(str) if $DEBUG_RDOC
+  end
+
+  # Main hook method called by RDoc, triggers the generation process.
   def generate(top_levels)
+    debug "Sorting classes, modules, and methods..."
     @toplevels = top_levels
     @classes_and_modules = RDoc::TopLevel.all_classes_and_modules.sort_by{|klass| klass.full_name}
     @methods = @classes_and_modules.map{|mod| mod.method_list}.flatten.sort
@@ -174,6 +182,7 @@ class RDoc::Generator::Emerald
   private
 
   def copy_base_files
+    debug "Copying base base files..."
     mkdir @op_dir + "stylesheets" unless File.directory?(@op_dir + "stylesheets")
 
     cp   Dir[DATA_DIR + "stylesheets" + "*.css"], @op_dir + "stylesheets"
@@ -183,6 +192,8 @@ class RDoc::Generator::Emerald
 
   def evaluate_toplevels
     @toplevels.each do |toplevel|
+      debug "Processing toplevel #{toplevel.name}..."
+
       root_path("../" * (toplevel.relative_name.split("/").count - 1)) # Last component is a filename
       title toplevel.relative_name
 
@@ -192,12 +203,15 @@ class RDoc::Generator::Emerald
 
       # Evaluate the actual file documentation
       File.open(path, "w") do |file|
+        debug  "  => #{path}"
         file.write(render(:toplevel, binding))
       end
 
       # If this toplevel is supposed to be the main file,
       # copy it’s content to the index.html file.
       if toplevel.relative_name == @options.main_page
+        debug "  => This is the main page. Writing index.html."
+
         root_path "./" # We *are* at the top here
 
         File.open(@op_dir + "index.html", "w") do |file|
@@ -209,6 +223,8 @@ class RDoc::Generator::Emerald
 
   def evaluate_classes_and_modules
     @classes_and_modules.each do |classmod|
+      debug "Processing class/module #{classmod.full_name} (#{classmod.method_list.count} methods)..."
+
       path = @op_dir + rdocize_classmod(classmod)
 
       mkdir_p   path.parent unless path.parent.directory?
@@ -217,6 +233,7 @@ class RDoc::Generator::Emerald
 
 
       File.open(path, "w") do |file|
+        debug "  => #{path}"
         file.write(render(:classmodule, binding))
       end
     end

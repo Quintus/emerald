@@ -53,7 +53,7 @@
   <h2 id="constants">Constants</h2>
   <table class="constants">
     <tr><th>Name</th><th>Value</th><th>Description</th></tr>
-    <% classmod.constants.each do |const| %>
+    <% classmod.constants.sort_by(&:name).each do |const| %>
       <% abbrev_value = const.value.chars.count > 20 ? "#{const.value.chars.first(20).join}..." : const.value %>
       <tr><td><%= const.name %></td><td style="font-family: monospace"><%= abbrev_value %></td><td><%= const.description %></td></tr>
     <% end %>
