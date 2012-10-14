@@ -3,7 +3,8 @@
 <%= toplevel.description %>
 
 <% if @options.generate_toc %>
-  <script>
+
+  <script type="text/javascript">
     html = "<div class=\"toc\"><p>Contents</p>";
     html += generate_toc();
     html += "</div>";

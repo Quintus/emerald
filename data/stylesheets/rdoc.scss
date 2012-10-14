@@ -166,12 +166,19 @@ div.private-instance   { @include method-docs(yellow, yellow, #333333, white, bl
 /********** Indices **********/
 
 div.index {
-    overflow: hidden; // Hangs into the content otherwise
+    height: 33%;
+
+    div.list {
+        height: 80%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 
     // Remove indentation for the indexed items
     ul {
         list-style-type: none;
         padding-left: 0px;
+        margin: 4px 0px 0px 0px;
 
         // Long names should be shown as far as possible
         li { font-size: small; }
@@ -179,6 +186,9 @@ div.index {
 
     // Index captions
     div.header {
+        display: table; /* Needed for vertically centering the text in it, see <p> style below */
+        width: 100%;
+        height: 20%;
         border: 1px solid #0E3062;
         background-color: #336699;
         color: white;
@@ -189,7 +199,7 @@ div.index {
         }
 
         // Remove paragraph margins for more text space
-        p { margin: 0px; }
+        p { margin: 0px; display: table-cell; vertical-align: middle; }
     }
 }
 
@@ -313,15 +323,38 @@ pre.ruby {
  * Unique elements
  ****************************************/
 
-div#indices {
-    float: left;
+div#sidebar {
+    position: fixed;
+    top: 4px;
+    left: 4px;
     width: 19%; /* Some space */
+    height: 95%; /* This is adjusted by JavaScript */
+    padding-right: 8px;
+    overflow: hidden;
+    border-right: 2px dashed gray;
+
+    form#search {
+        height: 5%;
+
+        p {
+            margin: 0px 0px 2px 0px;
+
+            input {
+                width: 100%;
+            }
+        }
+    }
+
+    div#indices {
+        height: 95%;
+    }
 }
 
 div#content {
-    float: right;
-    width: 79%; /* Some space */
-    border-left: 2px dashed gray;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 78.5%; /* Some space */
     padding-left: 10px;
 }
 
