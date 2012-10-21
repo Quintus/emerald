@@ -279,8 +279,10 @@ table.constants {
 /********** Attribute docs **********/
 
 ul.attribute-list {
-    list-style-image: url("images/tag_blue.png");
+    line-height: 1.5em;
+
     strong { color: #336699; }
+    sup {font-size: x-small; }
 }
 
 /********** Sourcecode listings **********/

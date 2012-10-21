@@ -63,9 +63,9 @@
 <%############ Attributes #############%>
 <% unless classmod.attributes.empty? %>
   <h2 id="attributes">Attributes</h2>
-  <ul class="attribute-list">
+  <ul class="attribute-list" style="list-style-image: url('<%= root_path + "images" + "tag_blue.png" %>')">
     <% classmod.attributes.each do |attr| %>
-      <li><strong><%= "#{attr.name}<sup>[#{attr.rw}]</sup>" %></strong><br/><%= attr.description %></li>
+      <li><strong><%= "#{attr.name}&nbsp;<sup>[#{attr.rw}]</sup>" %></strong><br/><%= attr.description %></li>
     <% end %>
   </ul>
 <% end %>
