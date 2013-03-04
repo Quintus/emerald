@@ -2,6 +2,7 @@
 GEMSPEC = Gem::Specification.new do |spec|
   # Descriptive information
   spec.name        = "emerald"
+  spec.license     = "GPLv3"
   spec.summary     = "The only RDoc generator that makes your Ruby documentation a jewel, too"
   spec.description =<<-EOF
 Emerald is a generator for RDoc, like standard Darkfish, but looks
@@ -18,7 +19,7 @@ by Hanna, but does not share any code with it (and does not use frames!).
   spec.required_ruby_version = ">= 1.9"
 
   # Dependencies
-  spec.add_dependency("rdoc", ">= 3.12")
+  spec.add_dependency("rdoc", ">= 4.0.0")
   spec.add_dependency("sass", ">= 3.2.0")
 
   # Gem contents
