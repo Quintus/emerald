@@ -28,7 +28,7 @@ function generate_toc(heading){
         return list;
     }
     else // Add this heading to the current <ul>
-        list += "<li>" + "<a href=\"#" + heading.attr("id") + "\">" + heading.text() + "</a>";
+        list += "<li>" + "<a href=\"#" + heading.attr("id") + "\">" + heading.contents().not("span:last-child").text() + "</a>";
 
     /* Find all "deeper" heading siblings. If an equal or higher-order
      * heading is found, abort the iteration and let the parent function
