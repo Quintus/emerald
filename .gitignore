@@ -1,4 +1,3 @@
 doc/
-data/.sass-cache
-data/stylesheets/*.css
+.sass-cache
 pkg/
