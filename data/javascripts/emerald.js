@@ -38,10 +38,10 @@ $(document).ready(function(){
      */
     $("h2, h3, h4, h5, h6").hover(
         function(event){
-            $(this).append('<a class="para" href="' + window.location.pathname + '#' + $(this).attr('id') + '">&nbsp;¶</a>');
+            $(this).find("span").find("a[id^='#label-'").show();
         },
         function(event){
-            $(this).find("a:last").remove();
+            $(this).find("span").find("a[id^='#label-'").hide();
         }
     );
 
