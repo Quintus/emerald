@@ -105,13 +105,13 @@ dl {
 }
 
 /* The ¶ signs on headings */
-a.para {
+h1 span a, h2 span a, h3 span a, h4 span a, h5 span a, h6 span a {
+    display: hidden;
     text-decoration: none;
     color: gray;
 
-    &:hover {
-        background: none;
-        color: gray;
+    &:before {
+        content: " "; /* otherwise the ¶ looks bad */
     }
 }
 

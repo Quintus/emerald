@@ -126,9 +126,10 @@ end
   # ==Parameter
   # [options]
   #   RDoc passed the current RDoc::Options instance.
-  def initialize(options)
+  def initialize(store, options)
+    @store   = store
     @options = options
-    @op_dir = Pathname.pwd.expand_path + @options.op_dir
+    @op_dir  = Pathname.pwd.expand_path + @options.op_dir
   end
 
   # Outputs a string on standard output, but only if RDoc
@@ -138,13 +139,13 @@ end
   end
 
   # Main hook method called by RDoc, triggers the generation process.
-  def generate(top_levels)
+  def generate
     debug "Sorting classes, modules, and methods..."
-    @toplevels = top_levels
-    @classes_and_modules = RDoc::TopLevel.all_classes_and_modules.sort_by{|klass| klass.full_name}
+    @toplevels = @store.all_files
+    @classes_and_modules = @store.all_classes_and_modules.sort_by{|klass| klass.full_name}
     @methods = @classes_and_modules.map{|mod| mod.method_list}.flatten.sort
 
-    # Create the output directory    
+    # Create the output directory
     mkdir @op_dir unless @op_dir.exist?
 
     copy_base_files
