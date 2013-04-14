@@ -32,18 +32,23 @@ $(document).ready(function(){
     });
 
     /**
-     * Shows/hides the ¶ anchor link signs next to
+     * Shows/hides the ¶ and ↑ anchor link signs next to
      * headings when hovering with the mouse over
      * a heading.
      */
-    $("h2, h3, h4, h5, h6").hover(
+    $("h1, h2, h3, h4, h5, h6").hover(
         function(event){
-            $(this).find("span").find("a[id^='#label-'").show();
+            $(this).find("span").last().find("a").show();
         },
         function(event){
-            $(this).find("span").find("a[id^='#label-'").hide();
+            $(this).find("span").last().find("a").hide();
         }
     );
+
+    // Hide all the ¶ and ↑ anchor link signs by default
+    $("h1, h2, h3, h4, h5, h6").each(function(){
+        $(this).find("span").last().find("a").hide();
+    })
 
     /**
      * This code handles the search field, showing and hiding
