@@ -50,15 +50,3 @@ function generate_toc(heading){
 
     return list;
 }
-
-/**
- * Event handler for the resize event on the browser window,
- * also called when the site loads (see the <script> tag at
- * the bottom of the layout template file). It adjusts the
- * height of the sidebar to the correct proportions instead
- * of its default wild guess of 95% percent of the browser
- * height.
- */
-function handle_resize(){
-    $("#sidebar").height($(window).height() - 8); /* 4px top margin, 4px bottom margin */
-}

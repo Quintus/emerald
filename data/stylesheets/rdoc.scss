@@ -330,7 +330,9 @@ div#sidebar {
     top: 4px;
     left: 4px;
     width: 19%; /* Some space */
-    height: 95%; /* This is adjusted by JavaScript */
+    max-width: 250px;
+    min-width: 100px;
+    height: 100%;
     padding-right: 8px;
     overflow: hidden;
     border-right: 2px dashed gray;
