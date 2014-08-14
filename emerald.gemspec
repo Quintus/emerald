@@ -19,8 +19,8 @@ by Hanna, but does not share any code with it (and does not use frames!).
   spec.required_ruby_version = ">= 1.9"
 
   # Dependencies
-  spec.add_dependency("rdoc", ">= 4.0.0")
-  spec.add_dependency("sass", ">= 3.2.0")
+  spec.add_dependency("rdoc", "~> 4.0")
+  spec.add_development_dependency("sass", "~> 3.0")
 
   # Gem contents
   spec.files = Dir["**/*.rb"] +
