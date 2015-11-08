@@ -1,3 +1,8 @@
+= Abandoned Project
+
+**NOTE** I abandoned this project. Do not use this if you don’t want
+to maintain it yourself!
+
 = Emerald -- Make your Ruby documentation a jewel, too
 
 You think Darkfish is the worst RDoc generator ever? Got lost in SDoc
